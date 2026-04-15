@@ -3528,36 +3528,9 @@ function UniversalAutoload.buildObjectsToUnloadTable(vehicle, forceUnloadPositio
 						unloadPlace.wasFlippedYZ = true
 					end
 					
-					local offsetX = 0
-					local offsetY = 0
-					local offsetZ = 0
-					
-					if forceUnloadPosition then
-						if forceUnloadPosition == "rear" or forceUnloadPosition == "behind" then
-							offsetZ = -spec.loadVolume.length - spec.loadVolume.width/2
-						elseif forceUnloadPosition == "left" then
-							offsetX = 1.5*spec.loadVolume.width
-						elseif forceUnloadPosition == "right" then
-							offsetX = -1.5*spec.loadVolume.width
-						end
-					else
-						if spec.frontUnloadingOnly then
-							offsetZ = spec.loadVolume.length + spec.loadVolume.width/2
-						elseif spec.rearUnloadingOnly then
-							offsetZ = -spec.loadVolume.length - spec.loadVolume.width/2
-						else
-							if spec.isLogTrailer then
-								offsetX = 2*spec.loadVolume.width
-							else
-								offsetX = 1.5*spec.loadVolume.width
-							end
-							if spec.currentTipside == "right" then offsetX = -offsetX end
-						end
-					end
-					
-					offsetX = offsetX - containerType.offset.x
-					offsetY = offsetY - containerType.offset.y
-					offsetZ = offsetZ - containerType.offset.z
+					local offsetX = -containerType.offset.x
+					local offsetY = -containerType.offset.y
+					local offsetZ = -containerType.offset.z
 
 					if not unloadPlace.node then
 						unloadPlace.node = createTransformGroup("unloadPlace")
@@ -3575,6 +3548,39 @@ function UniversalAutoload.buildObjectsToUnloadTable(vehicle, forceUnloadPositio
 			end
 		end
 	end
+	
+	local offsetX = 0
+	local offsetY = 0
+	local offsetZ = 0
+	
+	if forceUnloadPosition then
+		if forceUnloadPosition == "rear" or forceUnloadPosition == "behind" then
+			offsetZ = -spec.loadVolume.length - spec.loadVolume.width/2
+		elseif forceUnloadPosition == "left" then
+			offsetX = 1.5*spec.loadVolume.width
+		elseif forceUnloadPosition == "right" then
+			offsetX = -1.5*spec.loadVolume.width
+		end
+	else
+		if spec.frontUnloadingOnly then
+			offsetZ = spec.loadVolume.length + spec.loadVolume.width/2
+		elseif spec.rearUnloadingOnly then
+			offsetZ = -spec.loadVolume.length - spec.loadVolume.width/2
+		else
+			if spec.isLogTrailer then
+				offsetX = 2*spec.loadVolume.width
+			else
+				offsetX = 1.5*spec.loadVolume.width
+			end
+			if spec.currentTipside == "right" then offsetX = -offsetX end
+		end
+	end
+	
+	local customOffset = 0 --spec.loadVolume.length/2
+	local customRotation = 0 --math.pi/2
+	if spec.currentTipside == "right" then customOffset = -customOffset end
+	setTranslation(spec.unloadGroup, offsetX+customOffset, offsetY, offsetZ)
+	setRotation(spec.unloadGroup, 0, customRotation, 0)
 	
 	for object, unloadPlace in pairs(spec.objectsToUnload) do
 		local thisAreaClear = false
