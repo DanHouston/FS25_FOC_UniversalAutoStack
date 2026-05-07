@@ -4146,7 +4146,7 @@ function UniversalAutoload:getLoadPlace(containerType, object)
 				while spec.currentLoadLength <= spec.loadArea[i].length do
 
 					local maxLoadAreaHeight = spec.loadArea[i].height
-					if containerType.isBale and spec.loadArea[i].baleHeight then
+					if containerType.isBale and spec.loadArea[i].baleHeight and maxLoadAreaHeight < spec.loadArea[i].baleHeight then
 						maxLoadAreaHeight = spec.loadArea[i].baleHeight
 					end
 					
