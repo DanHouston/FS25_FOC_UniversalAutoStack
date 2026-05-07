@@ -1084,6 +1084,9 @@ function UniversalAutoload:startLoading(force, noEventSend)
 			end
 		
 			spec.sortedObjectsToLoad = UniversalAutoload.createSortedObjectsToLoad(self, spec.availableObjects)
+			if spec.sortedObjectsToLoad and #spec.sortedObjectsToLoad==0 then
+				UniversalAutoload.debugPrint("NOTHING AVAILABLE TO LOAD", debugLoading)
+			end
 		end
 		
 		UniversalAutoload.StartLoadingEvent.sendEvent(self, force, noEventSend)
@@ -2947,14 +2950,14 @@ function UniversalAutoload:doUpdate(dt, isActiveForInput, isActiveForInputIgnore
 							end
 						end
 						if #spec.sortedObjectsToLoad > 0 then
-							if spec.trailerIsFull or (UniversalAutoload.testLoadAreaIsEmpty(self) and not spec.autoCollectionMode) then
+							if spec.trailerIsFull or (UniversalAutoload.testLoadAreaIsEmpty(self) and not spec.autoCollectionMode and not spec.activeLoading) then
 								UniversalAutoload.debugPrint("RESET PATTERN to fill in any gaps", debugLoading)
 								spec.partiallyUnloaded = true
 								spec.resetLoadingPattern = true
 							end
 						else
 							if spec.activeLoading then
-								if not spec.trailerIsFull and not self:ualGetIsMoving() then
+								if spec.totalAvailableCount > 0 and not spec.trailerIsFull and not self:ualGetIsMoving() then
 									-- UniversalAutoload.debugPrint("** ATTEMPT RELOAD **")
 									UniversalAutoload.startLoading(self)
 								end
@@ -4261,7 +4264,7 @@ function UniversalAutoload:getLoadPlace(containerType, object)
 				spec.nextLayerHeight = 0
 			end
 			if debugLoading then
-				UniversalAutoload.debugPrint("START NEW LAYER")
+				UniversalAutoload.debugPrint("=== START NEW LAYER ===")
 				UniversalAutoload.debugPrint("currentLayerCount: " .. spec.currentLayerCount)
 				UniversalAutoload.debugPrint("currentLayerHeight: " .. spec.currentLayerHeight)
 			end
