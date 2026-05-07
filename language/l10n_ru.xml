@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Автоматический режим загрузки"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Разгрузка"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Принудительная разгрузка"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Установить положение разгрузки"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Сдвинуть положение разгрузки влево"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Сдвинуть положение разгрузки вправо"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Повернуть положение разгрузки"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Сменить сторону разгрузки"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Переключить фильтр загрузки"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Переключение горизонтальной загрузки"/>

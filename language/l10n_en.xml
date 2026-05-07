@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Automatic Collection Mode"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Unload"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Force Unload"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Set unloading position"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Move unloading position left"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Move unloading position right"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Rotate unloading position"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Toggle unloading side"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Toggle loading filter"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Toggle horizontal loading"/>

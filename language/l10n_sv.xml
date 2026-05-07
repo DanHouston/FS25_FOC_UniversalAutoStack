@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Automatiskt Insamlingsläge"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Lossa"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Tvångsavlastning"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Ställ in lossningsposition"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Flytta lossningspositionen åt vänster"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Flytta lossningspositionen åt höger"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Rotera lossningspositionen"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Växla lossningssida"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Växla Lastningsfilter"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Växla horisontell Lastning"/>

@@ -158,6 +158,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="自动收集模式"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="卸载"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="强制卸货"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="设置卸货位置"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="向左移动卸货位置"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="向右移动卸货位置"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="旋转卸货位置"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="切换卸载端"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="切换装载过滤器"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="切换水平装载"/>

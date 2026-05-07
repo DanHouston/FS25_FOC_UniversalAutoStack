@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Automatische ophaalmodus"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Lossen"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Forceer lossen"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Lospositie instellen"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Lospositie naar links verplaatsen"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Lospositie naar rechts verplaatsen"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Lospositie roteren"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Schakelaar loszijde"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Schakelaar laad filter"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Toggle horizontaal laden"/>

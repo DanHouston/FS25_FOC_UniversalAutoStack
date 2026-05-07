@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Tryb automatycznego zbierania"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Wyładuj"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Wymuś wyładunek"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Ustaw pozycję rozładunku"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Przesuń pozycję rozładunku w lewo"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Przesuń pozycję rozładunku w prawo"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Obróć pozycję rozładunku"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Przełącz stronę wyładunku"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Przełącz filtr ładowania"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Przełącz ładowanie poziome"/>

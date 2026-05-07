@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Otomatik Toplama Modu"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Boşalt"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Boşalt zorla"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Boşaltma konumunu ayarla"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Boşaltma konumunu sola taşı"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Boşaltma konumunu sağa taşı"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Boşaltma konumunu döndür"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Boşaltma tarafını değiştir"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Yükleme filtresini değiştir"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Yatay yüklemeyi aç/kapat"/>

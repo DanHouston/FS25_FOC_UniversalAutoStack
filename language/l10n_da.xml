@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Automatisk samlemodus"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Aflæsning"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Tving aflæsning"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Indstil aflæsningsposition"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Flyt aflæsningsposition til venstre"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Flyt aflæsningsposition til højre"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Roter aflæsningsposition"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Skift aflæsningsside"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Skift læssefilter"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Til/fra horisontal læsning"/>

@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Automata gyűjtő mód" />
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Kirakodás" />
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Kényszerített kirakodás" />
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Kirakási pozíció beállítása"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Kirakási pozíció balra mozgatása"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Kirakási pozíció jobbra mozgatása"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Kirakási pozíció forgatása"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Oldal választása" />
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Töltési szűrő" />
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Vízszintes töltés" />

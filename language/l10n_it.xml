@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Modalità raccolta automatica"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Scaricare"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Scarico forzato"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Imposta la posizione di scarico"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Sposta la posizione di scarico a sinistra"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Sposta la posizione di scarico a destra"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Ruota la posizione di scarico"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Alterna il lato di scarico"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Attiva/disattiva il filtro di caricamento"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Attiva/disattiva il caricamento orizzontale"/>

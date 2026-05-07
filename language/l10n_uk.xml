@@ -157,6 +157,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Режим Автозавантаження Тюків"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Розвантажити"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Примусово розвантажити"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Встановити положення розвантаження"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Перемістити положення розвантаження ліворуч"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Перемістити положення розвантаження праворуч"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Повернути положення розвантаження"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Перемкнути бік розвантаження"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Перемкнути фільтр завантаження"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Перемкнути метод завантаження"/>

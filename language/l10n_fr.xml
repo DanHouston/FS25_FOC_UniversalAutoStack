@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Chargement auto"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Décharger"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Forcer déchargement"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Définir position de déchargement"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Déplacer la position de déchargement vers la gauche"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Déplacer la position de déchargement vers la droite"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Faire pivoter la position de déchargement"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Changer côté de déchargement"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Changer filtre de chargement"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Basculer chargement horizontal"/>

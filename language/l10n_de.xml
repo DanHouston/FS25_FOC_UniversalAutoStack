@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Automatischer Sammelmodus"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Abladen"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Abladen erzwingen"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Entladeposition einstellen"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Entladeposition nach links verschieben"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Entladeposition nach rechts verschieben"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Entladeposition drehen"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Aktive Entladeseite umschalten"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Ladefilter umschalten"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Horizontales Laden umschalten"/>

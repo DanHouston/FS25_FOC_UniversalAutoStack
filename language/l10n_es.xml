@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Modo de recogida automática"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Descargar"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Descarga forzada"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Establecer posición de descarga"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Mover la posición de descarga a la izquierda"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Mover la posición de descarga a la derecha"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Girar la posición de descarga"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Cambiar lado de descarga"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Cambiar filtro de carga"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Alternar carga horizontal"/>

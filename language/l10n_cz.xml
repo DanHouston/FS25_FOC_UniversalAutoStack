@@ -156,6 +156,10 @@
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_COLLECTION" text="Režim automatického sběru"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL" text="Vyložit"/>
 		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_ALL_FORCE" text="Nuceně vyložit"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION" text="Nastavit polohu vykládky"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" text="Posunout polohu vykládky doleva"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" text="Posunout polohu vykládky doprava"/>
+		<text name="input_UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" text="Otočit polohu vykládky"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" text="Přepnout stranu vykládky"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_FILTER" text="Přepnout filtr nakládky"/>
 		<text name="input_UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" text="Přepnout horizontální nakládku"/>
