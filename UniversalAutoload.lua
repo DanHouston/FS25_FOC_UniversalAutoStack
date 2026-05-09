@@ -23,6 +23,7 @@ UniversalAutoload.OBJECTS_LOOKUP = {}
 
 UniversalAutoload.ALL = "ALL"
 UniversalAutoload.DELTA = 0.005
+UniversalAutoload.SHIFT_DELTA = 0.05
 UniversalAutoload.BIGBAG_SPACING = 0.1
 UniversalAutoload.MAX_STACK = 5
 UniversalAutoload.LOG_SPACE = 0.25
@@ -334,13 +335,13 @@ function UniversalAutoload:updateActionEventKeys()
 				InputHelpDisplay.MAX_NUM_ELEMENTS = UniversalAutoload.MAX_NUM_ELEMENTS
 			end
 
-			local function registerActionEvent(id, event, callback, priority, visible)
+			local function registerActionEvent(id, event, callback, priority, visible, keydown)
 				local valid, actionEventId = self:addActionEvent(spec.actionEvents, actions[id], self, UniversalAutoload[callback],
-					triggerUp, triggerDown, triggerAlways, startActive, callbackState, customIconName, ignoreCollisions, reportAnyDeviceCollision)
+					(keydown==true) or triggerUp, triggerDown, triggerAlways, startActive, callbackState, customIconName, ignoreCollisions, reportAnyDeviceCollision)
 				UniversalAutoload.debugPrint("  " .. tostring(id) .. ": "..tostring(valid), debugKeys)
 				if valid == false then -- and self:getIsSelected()
 					local _, _, otherEvents = g_inputBinding:registerActionEvent(actions[id], self, UniversalAutoload[callback],
-						triggerUp, triggerDown, triggerAlways, startActive, callbackState, true, reportAnyDeviceCollision)
+						(keydown==true) or triggerUp, triggerDown, triggerAlways, startActive, callbackState, true, reportAnyDeviceCollision)
 
 					if otherEvents ~= nil then
 						local removedConflictingEvent = nil
@@ -355,7 +356,7 @@ function UniversalAutoload:updateActionEventKeys()
 						end
 						if removedConflictingEvent then
 							local valid, newActionEventId = self:addActionEvent(spec.actionEvents, actions[id], self, UniversalAutoload[callback],
-								triggerUp, triggerDown, triggerAlways, startActive, callbackState, customIconName, ignoreCollisions, reportAnyDeviceCollision)
+								(keydown==true) or triggerUp, triggerDown, triggerAlways, startActive, callbackState, customIconName, ignoreCollisions, reportAnyDeviceCollision)
 							if valid then
 								actionEventId = newActionEventId
 							else
@@ -394,6 +395,13 @@ function UniversalAutoload:updateActionEventKeys()
 			registerActionEvent('UNLOAD_ALL', 'unloadAllActionEventId', 'actionEventUnloadAll', topPriority, true)
 			registerActionEvent('TOGGLE_LOADING', 'toggleLoadingActionEventId', 'actionEventToggleLoading', topPriority)
 			registerActionEvent('TOGGLE_COLLECTION', 'toggleCollectionModeEventId', 'actionEventToggleCollectionMode', topPriority)
+			
+			if g_currentMission:getIsServer() and not g_currentMission.missionDynamicInfo.isMultiplayer then
+				registerActionEvent('UNLOAD_POSITION', 'unloadPositionActionEventId', 'actionEventUnloadPosition', lowPriority, true)
+				registerActionEvent('UNLOAD_POSITION_LEFT', 'unloadPositionLeftActionEventId', 'keyDown_left', lowPriority, false, true)
+				registerActionEvent('UNLOAD_POSITION_RIGHT', 'unloadPositionRightActionEventId', 'keyDown_right', lowPriority, false, true)
+				registerActionEvent('UNLOAD_POSITION_ROTATE', 'unloadPositionRotateActionEventId', 'keyDown_rotate', lowPriority, false, true)
+			end
 
 			if not spec.isLogTrailer then
 				registerActionEvent('TOGGLE_FILTER', 'toggleLoadingFilterActionEventId', 'actionEventToggleFilter', midPriority)
@@ -807,6 +815,46 @@ function UniversalAutoload.actionEventUnloadAll(self, actionName, inputValue, ca
 	local spec = self.spec_universalAutoload
 	UniversalAutoload.debugPrint("UNLOAD ALL: "..self:getFullName() .. " (" .. tostring(spec.totalUnloadCount) .. ")")
 	UniversalAutoload.startUnloading(self)
+end
+--
+function UniversalAutoload.actionEventUnloadPosition(self, actionName, inputValue, callbackState, isAnalog)
+	-- UniversalAutoload.debugPrint("CALLBACK actionEventUnloadPosition: "..self:getFullName())
+	local spec = self.spec_universalAutoload
+
+	if inputValue == 1 then
+		if spec.adjustUnloadPosition == true then
+			UniversalAutoload.debugPrint("SET unload position: "..self:getFullName())
+			spec.leftKeyPressed = false
+			spec.rightKeyPressed = false
+			spec.rotateKeyPressed = false
+			spec.adjustUnloadPosition = false
+		else
+			UniversalAutoload.debugPrint("MODIFY unload position: "..self:getFullName())
+			spec.adjustUnloadPosition = true
+		end
+	end
+
+end
+function UniversalAutoload.keyDown_left(self, actionName, inputValue, callbackState, isAnalog)
+	-- print("MOVE UNLOAD POSITION LEFT")
+	local spec = self.spec_universalAutoload
+	if spec and spec.adjustUnloadPosition then
+		spec.leftKeyPressed = inputValue == 1
+	end
+end
+function UniversalAutoload.keyDown_right(self, actionName, inputValue, callbackState, isAnalog)
+	-- print("MOVE UNLOAD POSITION RIGHT")
+	local spec = self.spec_universalAutoload
+	if spec and spec.adjustUnloadPosition then
+		spec.rightKeyPressed = inputValue == 1
+	end
+end
+function UniversalAutoload.keyDown_rotate(self, actionName, inputValue, callbackState, isAnalog)
+	-- print("ROTATE UNLOAD POSITION")
+	local spec = self.spec_universalAutoload
+	if spec and spec.adjustUnloadPosition then
+		spec.rotateKeyPressed = inputValue == 1
+	end
 end
 --
 function UniversalAutoload.actionEventGlobalMenu(self, actionName, inputValue, callbackState, isAnalog)
@@ -2533,6 +2581,38 @@ function UniversalAutoload:doUpdate(dt, isActiveForInput, isActiveForInputIgnore
 		else
 			spec.menuDelayTime = spec.menuDelayTime + dt
 		end
+		
+		spec.customOffset = spec.customOffset or 0
+		spec.customRotation = spec.customRotation or 0
+
+		local rotationshift = spec.loadVolume.length / 3
+		local direction = (spec.currentTipside == "right") and 1 or -1
+		local function clampOffset()
+			local minOffset = (spec.customRotation == 0) and 0 or rotationshift
+			local maxOffset = spec.loadVolume.length / 2 + minOffset
+			spec.customOffset = math.clamp(spec.customOffset, minOffset, maxOffset)
+		end
+
+		if spec.leftKeyPressed then
+			spec.customOffset = spec.customOffset - (UniversalAutoload.SHIFT_DELTA * direction)
+			clampOffset()
+		end
+
+		if spec.rightKeyPressed then
+			spec.customOffset = spec.customOffset + (UniversalAutoload.SHIFT_DELTA * direction)
+			clampOffset()
+		end
+
+		if spec.rotateKeyPressed then
+			local rotated = spec.customRotation ~= 0
+
+			spec.customRotation = rotated and 0 or -math.pi / 2
+			spec.customOffset = spec.customOffset + (rotated and -rotationshift or rotationshift)
+
+			spec.rotateKeyPressed = false
+			clampOffset()
+		end
+
 	end
 	
 	if self.isServer then
@@ -3578,10 +3658,11 @@ function UniversalAutoload.buildObjectsToUnloadTable(vehicle, forceUnloadPositio
 			if spec.currentTipside == "right" then offsetX = -offsetX end
 		end
 	end
-	
-	local customOffset = 0 --spec.loadVolume.length/2
-	local customRotation = 0 --math.pi/2
+
+	local customOffset = spec.customOffset or 0
+	local customRotation = spec.customRotation or 0
 	if spec.currentTipside == "right" then customOffset = -customOffset end
+	if spec.currentTipside == "right" then customRotation = -customRotation end
 	setTranslation(spec.unloadGroup, offsetX+customOffset, offsetY, offsetZ)
 	setRotation(spec.unloadGroup, 0, customRotation, 0)
 	
@@ -6096,17 +6177,53 @@ end
 function UniversalAutoload:drawDebugDisplay()
 	local spec = self.spec_universalAutoload
 
+	local RED     = { 1.0, 0.1, 0.1 }
+	local GREEN   = { 0.1, 1.0, 0.1 }
+	local YELLOW  = { 1.0, 1.0, 0.1 }
+	local CYAN    = { 0.1, 1.0, 1.0 }
+	local MAGENTA = { 1.0, 0.1, 1.0 }
+	local GREY    = { 0.2, 0.2, 0.2 }
+	local WHITE   = { 1.0, 1.0, 1.0 }
+	
+	UniversalAutoload.debugRefreshTime = (UniversalAutoload.debugRefreshTime or 0) + g_currentDt
+
+	if spec.adjustUnloadPosition and not g_gui:getIsGuiVisible() then
+		if not self.isServer then
+			return
+		end
+
+		if not (UniversalAutoload.showLoading or UniversalAutoload.showDebug) then
+			if spec.objectsToUnload == nil or UniversalAutoload.debugRefreshTime > UniversalAutoload.loadingSpeed then
+				UniversalAutoload.buildObjectsToUnloadTable(self)
+			end
+			spec.objectsToUnload = spec.objectsToUnload or {}
+			for object, unloadPlace in pairs(spec.objectsToUnload or {}) do
+				local containerType = UniversalAutoload.getContainerType(object)
+				if containerType ~= nil then
+					local w, h, l = UniversalAutoload.getContainerTypeDimensions(containerType, true)
+					local offset = 0 if containerType.isBale then offset = h/2 end
+					if spec.unloadingAreaClear then
+						UniversalAutoload.DrawDebugPallet( unloadPlace.node, w, h, l, true, false, CYAN, offset )
+					else
+						UniversalAutoload.DrawDebugPallet( unloadPlace.node, w, h, l, true, false, RED, offset )
+					end
+				end
+			end
+		end
+		
+		if spec.loadVolume and spec.unloadGroup then
+			local W, H, L = spec.loadVolume.width, spec.loadVolume.height, spec.loadVolume.length
+			local x, y, z = localToLocal(spec.unloadGroup, spec.loadVolume.rootNode, 0, 0, 0)
+			local rx, ry, rz = localRotationToLocal(spec.unloadGroup, spec.loadVolume.rootNode, 0, 0, 0)
+			local heightAboveGround = DensityMapHeightUtil.getCollisionHeightAtWorldPos(x, y, z) + 0.1	
+			UniversalAutoload.DrawDebugPallet( spec.unloadGroup, W, 0, L, true, false, WHITE )
+		end
+	
+	end
+
 	if (UniversalAutoload.showLoading or UniversalAutoload.showDebug) and not g_gui:getIsGuiVisible() then
 		-- g_currentMission:addExtraPrintText("ACTIVE - " .. tostring(self:getName()))
-		
-		local RED     = { 1.0, 0.1, 0.1 }
-		local GREEN   = { 0.1, 1.0, 0.1 }
-		local YELLOW  = { 1.0, 1.0, 0.1 }
-		local CYAN    = { 0.1, 1.0, 1.0 }
-		local MAGENTA = { 1.0, 0.1, 1.0 }
-		local GREY    = { 0.2, 0.2, 0.2 }
-		local WHITE   = { 1.0, 1.0, 1.0 }
-		
+
 		local isActiveForInput = self:getIsActiveForInput()
 		if not (isActiveForInput or spec.autoCollectionMode or self==UniversalAutoload.lastClosestVehicle) then
 			RED = GREY
@@ -6175,8 +6292,6 @@ function UniversalAutoload:drawDebugDisplay()
 		
 		if self.isServer then
 
-			UniversalAutoload.debugRefreshTime = (UniversalAutoload.debugRefreshTime or 0) + g_currentDt
-			
 			if UniversalAutoload.getIsUnloadingKeyAllowed(self) == true then
 				if spec.objectsToUnload == nil or UniversalAutoload.debugRefreshTime > UniversalAutoload.loadingSpeed then
 					UniversalAutoload.debugRefreshTime = 0

@@ -77,6 +77,10 @@ GitHub-Link: https://github.com/loki79uk/FS25_UniversalAutoload
         <action name="UNIVERSALAUTOLOAD_GLOBAL_MENU" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
         <action name="UNIVERSALAUTOLOAD_TOGGLE_LOADING" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
         <action name="UNIVERSALAUTOLOAD_UNLOAD_ALL" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
+        <action name="UNIVERSALAUTOLOAD_UNLOAD_POSITION" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
+        <action name="UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
+        <action name="UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
+        <action name="UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
         <action name="UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
         <action name="UNIVERSALAUTOLOAD_TOGGLE_FILTER" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
         <action name="UNIVERSALAUTOLOAD_TOGGLE_HORIZONTAL" category="VEHICLE" axisType="HALF" ignoreComboMask="false"/>
@@ -109,6 +113,18 @@ GitHub-Link: https://github.com/loki79uk/FS25_UniversalAutoload
         </actionBinding>
         <actionBinding action="UNIVERSALAUTOLOAD_UNLOAD_ALL" >
             <binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_i" />
+        </actionBinding>
+        <actionBinding action="UNIVERSALAUTOLOAD_UNLOAD_POSITION" >
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_lshift KEY_i" />
+        </actionBinding>
+        <actionBinding action="UNIVERSALAUTOLOAD_UNLOAD_POSITION_LEFT" >
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_KP_4" />
+        </actionBinding>
+        <actionBinding action="UNIVERSALAUTOLOAD_UNLOAD_POSITION_RIGHT" >
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_KP_6" />
+        </actionBinding>
+        <actionBinding action="UNIVERSALAUTOLOAD_UNLOAD_POSITION_ROTATE" >
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_KP_0" />
         </actionBinding>
         <actionBinding action="UNIVERSALAUTOLOAD_TOGGLE_TIPSIDE" >
             <binding device="KB_MOUSE_DEFAULT" input="KEY_u" />
