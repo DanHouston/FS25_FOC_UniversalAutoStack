@@ -2582,35 +2582,37 @@ function UniversalAutoload:doUpdate(dt, isActiveForInput, isActiveForInputIgnore
 			spec.menuDelayTime = spec.menuDelayTime + dt
 		end
 		
-		spec.customOffset = spec.customOffset or 0
-		spec.customRotation = spec.customRotation or 0
+		if g_currentMission:getIsServer() and not g_currentMission.missionDynamicInfo.isMultiplayer then
+			spec.customOffset = spec.customOffset or 0
+			spec.customRotation = spec.customRotation or 0
 
-		local rotationshift = spec.loadVolume.length / 3
-		local direction = (spec.currentTipside == "right") and 1 or -1
-		local function clampOffset()
-			local minOffset = (spec.customRotation == 0) and 0 or rotationshift
-			local maxOffset = spec.loadVolume.length / 2 + minOffset
-			spec.customOffset = math.clamp(spec.customOffset, minOffset, maxOffset)
-		end
+			local rotationshift = spec.loadVolume.length / 3
+			local direction = (spec.currentTipside == "right") and 1 or -1
+			local function clampOffset()
+				local minOffset = (spec.customRotation == 0) and 0 or rotationshift
+				local maxOffset = spec.loadVolume.length / 2 + minOffset
+				spec.customOffset = math.clamp(spec.customOffset, minOffset, maxOffset)
+			end
 
-		if spec.leftKeyPressed then
-			spec.customOffset = spec.customOffset - (UniversalAutoload.SHIFT_DELTA * direction)
-			clampOffset()
-		end
+			if spec.leftKeyPressed then
+				spec.customOffset = spec.customOffset - (UniversalAutoload.SHIFT_DELTA * direction)
+				clampOffset()
+			end
 
-		if spec.rightKeyPressed then
-			spec.customOffset = spec.customOffset + (UniversalAutoload.SHIFT_DELTA * direction)
-			clampOffset()
-		end
+			if spec.rightKeyPressed then
+				spec.customOffset = spec.customOffset + (UniversalAutoload.SHIFT_DELTA * direction)
+				clampOffset()
+			end
 
-		if spec.rotateKeyPressed then
-			local rotated = spec.customRotation ~= 0
+			if spec.rotateKeyPressed then
+				local rotated = spec.customRotation ~= 0
 
-			spec.customRotation = rotated and 0 or -math.pi / 2
-			spec.customOffset = spec.customOffset + (rotated and -rotationshift or rotationshift)
+				spec.customRotation = rotated and 0 or -math.pi / 2
+				spec.customOffset = spec.customOffset + (rotated and -rotationshift or rotationshift)
 
-			spec.rotateKeyPressed = false
-			clampOffset()
+				spec.rotateKeyPressed = false
+				clampOffset()
+			end
 		end
 
 	end
