@@ -2289,7 +2289,9 @@ function UniversalAutoload:ualGetPalletCanDischargeToTrailer(object)
 		if self.spec_fillVolume then
 			for _, fillVolume in ipairs(self.spec_fillVolume.volumes or {}) do
 				if self:getFillUnitAllowsFillType(fillVolume.fillUnitIndex, fillType) then
-					isSupported = true
+					if (self:getFillUnitFillLevel(fillVolume.fillUnitIndex) or 0) > 0 then
+						isSupported = true
+					end
 				end
 			end		
 		end
