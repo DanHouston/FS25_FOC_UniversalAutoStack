@@ -5,61 +5,20 @@
     <version>1.0.2.9</version>
     
     <title>
-        <en>Universal Autoload</en>
-        <!-- <de>Universal Autoload</de> -->
-        <fr>Autoload Universel</fr>
-        <ru>Универсальная Автозагрузка</ru>
-        <nl>Universele Autoload</nl>
-        <cz>Univerzální Autoload</cz>
-        <pl>Universalne Autoładowanie</pl>
-        <es>Autoload Universal</es>
-        <br>Carregamento Automático Universal</br>
-        <tr>Evrensel Otomatik Yükleme</tr>
-        <cs>通用自动装载</cs>
+        <en>Universal Autostack</en>
     </title>
     
     <description>
-<en><![CDATA[Autoloading specialisation for trailers.  This automatically modifies the actual base game trailers, and will be applied to any new or existing trailers on your farm.  Supported trailers can be configured with a GUI when purchasing in the shop.  Please see the included read-me file for full instructions on configuration.
+        <en><![CDATA[Autostacking specialisation for trailers.  This automatically modifies the actual base game trailers, and will be applied to any new or existing trailers on your farm.  Supported trailers can be configured with a GUI when purchasing in the shop.  Please see the included read-me file for full instructions on configuration.
 
-Features:
-- Loads all pallet/container types
-- Loads lumber to forestry vehicles
-- Load and Unload by selected material or container type
-- Can also restrict loading to full pallets only
-- Select 'ALL' to load mixed types in sequence
-- Option to load in stacks or layers
-- Objects are loaded in size order for best packing efficiency
-- Integrated with AutoDrive and CoursePlay
+        Features:
+        - Stacks all pallet/container types
+        - Stacks lumber to forestry vehicles
 
-Changelog:
-v1.0.1.0
-- Prevented some runtime errors
-- Improved loading of shipping containers
 
-GitHub-Link: https://github.com/loki79uk/FS25_UniversalAutoload
-]]>
-</en>
+        ]]>
+        </en>
 
-<de><![CDATA[Autoloading-Spezialisierung für Anhänger.  Dies modifiziert automatisch die aktuellen Anhänger des Basisspiels und wird auf alle neuen oder bestehenden Anhänger auf eurer Farm angewendet.  Unterstützte Anhänger können über eine grafische Benutzeroberfläche beim Kauf im Shop konfiguriert werden.  Eine ausführliche Anleitung zur Konfiguration finden Sie in der mitgelieferten Read-me-Datei.
-
-Eigenschaften:
-- Lädt alle Paletten-/Containertypen
-- Lädt Holz auf Forstfahrzeuge
-- Laden und Entladen nach ausgewähltem Material oder Containertyp
-- Kann das Laden auch auf volle Paletten beschränken
-- Wählen Sie 'ALL', um gemischte Typen nacheinander zu laden
-- Option zum Laden in Stapeln oder Schichten
-- Die Objekte werden in der Reihenfolge ihrer Größe geladen, um die beste Packeffizienz zu erzielen
-- Integriert mit AutoDrive und CoursePlay
-
-Changelog:
-v1.0.1.0
-- Einige Laufzeitfehler wurden behoben
-- Das Laden von Versandcontainern wurde verbessert
-
-GitHub-Link: https://github.com/loki79uk/FS25_UniversalAutoload
-]]>
-</de>
     </description>
     
     <multiplayer supported="true" />

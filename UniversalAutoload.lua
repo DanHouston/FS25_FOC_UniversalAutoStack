@@ -5155,9 +5155,7 @@ function UniversalAutoload:ualLoadingTrigger_Callback(triggerId, otherActorId, o
 		local object = UniversalAutoload.getNodeObject(otherActorId)
 		if object then
 			if UniversalAutoload.getIsValidObject(self, object) then
-				if onEnter then
-					UniversalAutoload.addAvailableObject(self, object)
-				elseif onLeave then
+				if onLeave then
 					local foundTargetInOtherTrigger = false
 					if spec.extendPickupRange then -- not efficient - could store flag for each trigger id
 						for _, trigger in pairs(spec.triggers or {}) do
@@ -5241,7 +5239,7 @@ function UniversalAutoload:ualAutoLoadingTrigger_Callback(triggerId, otherActorI
 		local spec = self.spec_universalAutoload
 		local object = UniversalAutoload.getNodeObject(otherActorId)
 		if object then
-			if UniversalAutoload.getIsValidObject(self, object) then
+			if UniversalAutoload.isValidForManualLoading(object) then
 				if onEnter then
 					UniversalAutoload.debugPrint(" AutoLoadingTrigger ENTER: " .. tostring(object.id), debugLoading)
 					UniversalAutoload.addAutoLoadingObject(self, object)
