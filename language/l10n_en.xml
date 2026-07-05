@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <l10n>
 	<texts>
-		<text name="shop_configuration_text" text="Autoload"/>
-		<text name="configuration_universalAutoload" text="Universal Autoload"/>
+		<text name="shop_configuration_text" text="Autostack"/>
+		<text name="configuration_universalAutoload" text="Universal Autostack"/>
 		
 		<!-- TITLES -->
 		<text name="ui_local_settings_ual" text="Local Settings"/>
 		<text name="ui_global_settings_ual" text="Global Settings"/>
-		<text name="ui_config_settings_ual" text="Autoload Settings"/>
+		<text name="ui_config_settings_ual" text="Autostack Settings"/>
 		<text name="ui_vehicle_options_ual" text="Vehicle Options"/>
 		<text name="ui_loading_area_options_ual" text="Loading Area Options"/>
 		<text name="ui_save_options_ual" text="Save Options"/>
@@ -41,7 +41,7 @@
 		<text name="ui_global_tooltip_objectSpacing" text="Additional spacing between loaded objects (m)"/>
 
 		<!-- OPTIONS -->
-		<text name="ui_option_enableAutoload" text="Enable Autoload"/>
+		<text name="ui_option_enableAutoload" text="Enable Autostack"/>
 		<text name="ui_option_trailerType" text="Trailer Type"/>
 		<text name="ui_option_unloadingType" text="Unloading Position"/>
 		<text name="ui_option_rearOnly" text="Rear Only"/>
@@ -73,7 +73,7 @@
 		<text name="ui_option_offsetRoot" text="Offset Root"/>
 		<text name="ui_option_minLogLength" text="Min Log Length"/>
 		
-		<text name="ui_option_tooltip_enableAutoload" text="If Autoload is enabled or disabled for this vehicle"/>
+		<text name="ui_option_tooltip_enableAutoload" text="If Autostack is enabled or disabled for this vehicle"/>
 		<text name="ui_option_tooltip_trailerType" text="The special type of trailer, e.g. bale, log, curtain"/>
 		<text name="ui_option_tooltip_unloadingType" text="Use a special unloading position (front or rear)"/>
 		<text name="ui_option_tooltip_noLoadingFolded" text="Prevent loading when either folded or unfolded"/>

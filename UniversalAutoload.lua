@@ -5242,14 +5242,104 @@ function UniversalAutoload:ualAutoLoadingTrigger_Callback(triggerId, otherActorI
 			if UniversalAutoload.isValidForManualLoading(object) then
 				if onEnter then
 					UniversalAutoload.debugPrint(" AutoLoadingTrigger ENTER: " .. tostring(object.id), debugLoading)
-					UniversalAutoload.addAutoLoadingObject(self, object)
+					-- Collect the whole mounted/stacked group and add to availableObjects
+					UniversalAutoload.collectMountedStack(self, triggerId, object)
 				elseif onLeave then
 					UniversalAutoload.debugPrint(" AutoLoadingTrigger LEAVE: " .. tostring(object.id), debugLoading)
-					UniversalAutoload.removeAutoLoadingObject(self, object)
+					-- Do not aggressively remove here; availableObjects persists until loaded
 				end
 			end
 		end
 	end
+end
+
+
+function UniversalAutoload:collectMountedStack(triggerId, object)
+	local spec = self.spec_universalAutoload
+	if object == nil then
+		return
+	end
+
+	local trigger = spec.triggers[triggerId]
+	local parent = object.mountObject or object.dynamicMountObject
+
+	local candidates = {}
+	local added = {}
+
+	local function tryAdd(obj)
+		if obj == nil or added[obj] then return end
+		added[obj] = true
+		if spec.availableObjects and spec.availableObjects[obj] then
+			return
+		end
+		if spec.loadedObjects and spec.loadedObjects[obj] then
+			return
+		end
+		if spec.autoLoadingObjects and spec.autoLoadingObjects[obj] then
+			return
+		end
+		if UniversalAutoload.isValidForManualLoading(obj) then
+			table.insert(candidates, obj)
+		end
+	end
+
+	-- Always include the triggering object first
+	tryAdd(object)
+
+	-- Collect from known UAL lists and splitshapes lookup
+	for obj, _ in pairs(spec.availableObjects or {}) do tryAdd(obj) end
+	for obj, _ in pairs(spec.autoLoadingObjects or {}) do tryAdd(obj) end
+	for obj, _ in pairs(spec.loadedObjects or {}) do tryAdd(obj) end
+	for id, obj in pairs(UniversalAutoload.SPLITSHAPES_LOOKUP or {}) do tryAdd(obj) end
+
+	-- Spatial / mount-based scan for other nearby mounted items
+	if trigger and trigger.node then
+		local tnode = trigger.node
+		local halfW = (trigger.width or 0)/2
+		local halfL = (trigger.length or 0)/2
+		local function scanPool(pool)
+			for obj, _ in pairs(pool or {}) do
+				if not added[obj] and UniversalAutoload.getObjectPositionNode(obj) then
+					local node = UniversalAutoload.getObjectPositionNode(obj)
+					local x,y,z = localToLocal(node, tnode, 0,0,0)
+					if math.abs(x) <= (halfW + UniversalAutoload.DELTA) and math.abs(z) <= (halfL + UniversalAutoload.DELTA) and y >= -1.0 and y <= (trigger.height or 5) + 2 then
+						tryAdd(obj)
+					elseif parent and (obj.mountObject == parent or obj.dynamicMountObject == parent) then
+						tryAdd(obj)
+					end
+				end
+			end
+		end
+		scanPool(spec.availableObjects)
+		scanPool(spec.autoLoadingObjects)
+		scanPool(spec.loadedObjects)
+		scanPool(UniversalAutoload.SPLITSHAPES_LOOKUP)
+	else
+		-- If no trigger node available, fall back to mount-based detection
+		if parent then
+			for obj, _ in pairs(spec.availableObjects or {}) do if obj.mountObject == parent or obj.dynamicMountObject == parent then tryAdd(obj) end end
+			for obj, _ in pairs(spec.autoLoadingObjects or {}) do if obj.mountObject == parent or obj.dynamicMountObject == parent then tryAdd(obj) end end
+			for obj, _ in pairs(spec.loadedObjects or {}) do if obj.mountObject == parent or obj.dynamicMountObject == parent then tryAdd(obj) end end
+		end
+	end
+
+	-- Sort by world Y (bottom first)
+	table.sort(candidates, function(a,b)
+		local na = UniversalAutoload.getObjectPositionNode(a)
+		local nb = UniversalAutoload.getObjectPositionNode(b)
+		if na == nil or nb == nil then return false end
+		local _, ya, _ = UniversalAutoload.getWorldTranslation(na)
+		local _, yb, _ = UniversalAutoload.getWorldTranslation(nb)
+		return (ya or 0) < (yb or 0)
+	end)
+
+	-- Add to availableObjects via existing API to keep counters/flags correct
+	for _, obj in ipairs(candidates) do
+		UniversalAutoload.addAvailableObject(self, obj)
+	end
+
+	-- Start loading so the newly added availableObjects are picked up
+	UniversalAutoload.startLoading(self)
 end
 
 function UniversalAutoload:addLoadedObject(object)
