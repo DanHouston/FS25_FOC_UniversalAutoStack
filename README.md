@@ -1,40 +1,37 @@
-# FS25_UniversalAutoload
----------------------------------------------------
+# FS25_FOC_UniversalAutoStack (fork)
 
-Please get the latest ModHub release from: https://www.farming-simulator.com/mod.php?mod_id=325409
+This repository is a fork of the original `FS25_UniversalAutoload` mod adapted to support manual implement-based auto-stacking.
 
-Or the latest development release from: https://github.com/loki79uk/FS25_UniversalAutoload/releases
+Overview
+- The original mod provided automatic loading from ground objects into trailers. This fork changes the behaviour so that pallets and other stackable objects can be collected by a forklift/implement (mounted), then automatically stacked onto a trailer when the implement brings the items to the trailer's loading trigger.
+- Key goals achieved so far:
+	- Manual collection: mounted/implement-held items that enter the trailer auto-trigger are detected along with the rest of the stack on the implement.
+	- Group-aware queuing: the fork collects the full mounted/stacked group, adds them to the vehicle's available queue, and invokes the existing autoload placement logic so stacking order and placement are consistent with ground autoload.
 
----------------------------------------------------
+Why this fork exists
+- The original mod provided a high level of automation that could place items without realistic player interaction. This fork intentionally reduces that automation to make stacking behaviour more realistic and predictable.
 
-**READ THIS FIRST**
+- Instead of fully automatic ground-based loading, this fork requires the player to collect pallets with an implement (e.g. forklift) and bring the stack to the trailer. When the implement's pallet contacts the trailer trigger the mod detects the full mounted/stacked group and assists by queuing those items into the trailer's normal placement flow.
 
-- If you already have a vehicle on a savegame before adding UAL, then you either need to save the settings from the shop UAL menu OR you can purchase another copy of the same vehicle to create the setting.  In either case, you must then restart the save game you want to use.  Note that you can do this in any savegame, the act of buying it will create a global default for the vehicle.
-- The configuration file is updated/saved (in mod settings) when you BUY a vehicle **OR** when you apply changes to a vehicle in the workshop. Changes applied from the workshop will apply only to the edited vehicle for that session, but will become the default for all vehicles of the same type after the next restart.
-- In multiplayer games all clients can edit vehicles when they buy one, but the configuration is saved ON THE SERVER only.  So the server default will be set by the last player to adjust it.  As with single player, individual vehicle settings will persist for the rest of that game until the server is restarted, after that the default is applied to all vehicles of the same type.
+- The goal is to simplify and assist realistic stacking onto trailers while keeping the player in control — not to reintroduce or increase fully automated loading.
 
-If you are having issues with a vehicle not loading pallets at all then there are a few things to check
-- If you cant load LOGS then check that the logs are too long for you trailer.  Make the zone longer or cut the logs shorter.
-- If you do not see a loading zone with the debug display (shift-ctrl-F12) then the most likely thing is that the entry for that vehicle is corrupted in your mod settings file.  Try deleting the file completely (a new one will be created), or manually delete the entry for the vehicle you are having trouble with in a text editor.
-- It is also possible you simply don't have the trailer selected/active in game.  Press "G" to cycle the selected implement from your tractor/truck.
+Usage / Testing Notes
+- Install and enable the mod as usual.
+- To test manual stacking:
+	1. Spawn or prepare a few pallets and mount them on a forklift/implement.
+	2. Drive the implement so the stack's lower pallet touches the trailer's auto-loading trigger (side/rear auto trigger).
+	3. The mod will now attempt to detect the full stack, queue the objects, and start loading using the standard placement algorithm.
 
----------------------------------------------------
-NEW FEATURES:
-- All pallets, big-bags and bales supported by default
-- Automatic detection of trailer loading zones (in shop)
-- UI to adjust size of loading zone in shop before purchase
-- No external configuration files required!!
+Current Limitations and Next Work
+- Retry behaviour: currently the code collects the full stack and queues the objects into `availableObjects` and starts loading. Improvements remaining:
+	- Retry-on-failure: do not drop queued items when a placement fails; instead keep them for later retry (planned).
+	- Tighter spatial filtering: adjust trigger-area scanning to avoid false positives in crowded scenes (optional tuning).
 
----------------------------------------------------
-TO CONFIGURE LOADING ZONES:
-- Use middle mouse click in the shop to activate editing
-- Right click drag to move individual faces
-- ALT-right click drag to move opposing faces (**use this for width**)
-- SHIFT-right click drag to move the whole zone
-- CTRL with any of the above for fine control
-- SHIFT-CTRL middle mouse click to auto-calculate the zone from scratch (if you mess up)
-- Configuration can be edited in mod settings XML (if you know what you are doing)
+Code locations of interest
+- Trigger callback and collection changes: `UniversalAutoload.lua` — see `ualAutoLoadingTrigger_Callback` and new `collectMountedStack()` helper.
+- GUI strings: `gui/ShopConfigMenuUALSettings.xml` uses localization keys located in `language/l10n_*.xml` (e.g. `language/l10n_en.xml`).
 
----------------------------------------------------
-KNOWN ISSUES:
-- Existing trailers on a savegame will not get autoload added (until restart with valid settings)
+Credits
+- Original mod by the upstream `FS25_UniversalAutoload` project. This fork (FS25_FOC_UniversalAutoStack) adapts the code for manual implement-based stacking behaviour.
+
+- Original mod repository: https://github.com/loki79uk/FS25_UniversalAutoload
